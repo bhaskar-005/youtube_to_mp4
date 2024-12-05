@@ -1,101 +1,203 @@
-import Image from "next/image";
+"use server";
+import NavFooterLayout from "@/components/navFooterLayout";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+// import AdSection from './components/AdSection'
+import {
+  Search,
+  Download,
+  Music,
+  Video,
+  LinkIcon,
+  CheckCircle,
+  HelpCircle,
+  Shield,
+  AlertCircle,
+  Lock,
+  PlayCircle,
+  Globe,
+  Smartphone,
+} from "lucide-react";
 
-export default function Home() {
+export default async function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <NavFooterLayout>
+      <div className="max-w-4xl mx-auto mt-10 text-center">
+        <h1 className="text-4xl font-bold mb-4 text-darkgreen">
+          Download Videos with Ease
+        </h1>
+        <p className="text-xl text-gray-600 mb-8">
+          Enter a valid URL or search for videos to start downloading.
+        </p>
+        <form className="flex space-x-2 mb-12 bg-green-100 rounded-lg px-5 py-8">
+          <div className="relative flex-grow">
+            <LinkIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Enter video URL"
+              className="pl-14 pr-4 py-6 w-full rounded-lg shadow-lg focus:ring-2 focus:ring-green-300 border-darkgreen focus:border-white"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+          <Button
+            type="submit"
+            className="bg-green-600 hover:bg-green-700 rounded-lg px-8 py-6 shadow-lg transition-transform hover:scale-105"
           >
-            Read our docs
-          </a>
+            Search
+          </Button>
+        </form>
+
+        {/* How to Download Steps */}
+        <div className="mt-20">
+          <h2 className="text-2xl font-bold text-center mb-6 text-darkgreen opacity-80">
+            Download Videos With FastYouTubeMP4
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <FeatureCard
+              icon={<LinkIcon size={40} />}
+              title="1. Paste URL"
+              description="Copy the video link from platforms like YouTube, Vimeo, or TikTok."
+            />
+            <FeatureCard
+              icon={<CheckCircle size={40} />}
+              title="2. Verify"
+              description="Confirm the video details and select your preferred format."
+            />
+            <FeatureCard
+              icon={<Download size={40} />}
+              title="3. Download"
+              description="Click download and save your video to enjoy offline."
+            />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        <div id="about" className="mt-20">
+          <h2 className="text-2xl font-bold text-center mb-6 text-darkgreen opacity-80">
+            About FastYouTubeMP4
+          </h2>
+          <p className="text-start text-gray-500">
+            With FastYouTubeMP4, you can download and convert videos from
+            countless online sources like YouTube, Twitter, Facebook, OK.ru,
+            TikTok, and more. Its simple functionality requires you to paste the
+            video URL, select your desired format, and click download. This
+            user-friendly tool provides a straightforward way to acquire videos
+            from the web.
+          </p>
+        </div>
+
+        <br />
+        <div id="how-to-download" className="mt-10">
+          <h2 className="text-2xl font-bold text-center mb-6 text-darkgreen opacity-80">
+            How to download YouTube videos?
+          </h2>
+          <p className="text-start text-gray-500">
+            1. Go to YouTube.com and search for a video you would like to
+            download. Then copy the video URL from the browser address bar
+            (youtube.com/watch?v=id).
+            <br />
+            <br />
+            2. Paste the video URL in our YouTube Converter, and click on start
+            <br />
+            <br />
+            3.choose your preferred download format. You can choose between MP3
+            or MP4.
+            <br /> <br />
+            4. The conversion of the video will start, and it may take some
+            time. Please note that it is only possible to download YouTube
+            videos with a maximum length of 60 minutes. As soon as the
+            conversion is completed you will be able to download the converted
+            video.
+            <br />
+            <br />
+            With the usage of FastYouTubeMP4 you are accepting our{" "}
+            <strong>Terms of Use</strong>. We appreciate that you've chosen our
+            MP3/MP4 Downloader.
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <h2
+            id="faq"
+            className="text-2xl font-bold text-center mb-6 text-darkgreen opacity-80"
+          >
+            FAQ
+          </h2>
+          <div className="space-y-6">
+            {[
+              {
+                question: "Is downloading YouTube videos legal?",
+                answer:
+                  "Downloading videos is legal for personal, non-commercial use. Always respect copyright and content creator rights.",
+              },
+              {
+                question: "Are there any video length limitations?",
+                answer:
+                  "Our service supports videos up to 60 minutes long. Longer videos may require splitting into multiple downloads.",
+              },
+              {
+                question: "Do I need to create an account?",
+                answer:
+                  "No account required. You can download videos instantly without any registration.",
+              },
+              {
+                question: "What video qualities are available?",
+                answer:
+                  "We offer multiple quality options from 360p to 1080p, depending on the original video's resolution.",
+              },
+              {
+                question: "Can I download entire playlists?",
+                answer:
+                  "Currently, our service supports individual video downloads. Playlist downloading is a feature we're working on.",
+              },
+            ].map((faq, index) => (
+              <div key={index} className="text-start">
+                <h2 className="font-semibold text-gray-500">{faq.question}</h2>
+                <p className="text-gray-500">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <br />
+        <div>
+          <p className="text-gray-500"></p>
+        </div>
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-10">
+          <FeatureCard 
+            icon={<Download size={40} />}
+            title="Fast Downloads"
+            description="Get your favorite videos in seconds"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <FeatureCard 
+            icon={<Video size={40} />}
+            title="Multiple Formats"
+            description="Choose from various video qualities"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <FeatureCard 
+            icon={<Music size={40} />}
+            title="Audio Extraction"
+            description="Download audio-only versions"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div> */}
+      </div>
+    </NavFooterLayout>
+  );
+}
+
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="bg-white p-6 hover:bg-green-50 border-[1px] border-green-200 cursor-pointer flex items-center flex-col gap-2 rounded-lg shadow-lg transition-all hover:shadow-2xl ">
+      <div className="text-green-800 mb-4 bg-green-100 p-4 rounded-full">
+        {icon}
+      </div>
+      <h2 className="text-xl font-semibold mb-2 text-darkgreen">{title}</h2>
+      <p className="text-gray-500">{description}</p>
     </div>
   );
 }
