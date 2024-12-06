@@ -6,16 +6,16 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import toast from "react-hot-toast";
 import useVidFormate from "@/hooks/useVidFormate";
-import { useDownload } from "@/hooks/useDownload";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import Image from "next/image";
+import useDownloadHook from "@/hooks/useDownload";
 
 const InputAndDownload = () => {
   const [videoUrl, setVideoUrl] = React.useState("");
   const [showAll, setShowAll] = useState(false);
   // const [videoFormats, setVideoFormats] = useState([]);
   const { isError, isPending, isSuccess, mutate, data } = useVidFormate();
-  const downloadInfo = useDownload();
+  const downloadInfo = useDownloadHook();
   const isValidUrl = (url: string) => {
     try {
       new URL(url); // Tries to create a valid URL
@@ -67,7 +67,7 @@ const InputAndDownload = () => {
 
       <div>
         {isError && <p className="text-red-500">Invalid URL</p>}
-        {isPending || downloadInfo.isPending && <p className="text-gray-500">Loading...</p>}
+        {isPending || downloadInfo?.isPending &&  <p className="text-gray-500">Loading...</p>}
         {isSuccess && (
             <>
             <div 
@@ -117,7 +117,7 @@ const InputAndDownload = () => {
                       </div>
                       <Button
                         className="bg-green-600 text-white flex items-center gap-2"
-                        onClick={() => downloadInfo.mutate(videoUrl, format.itag)} 
+                        onClick={() => downloadInfo.mutate({videoUrl, itag:format.itag})} 
                       >
                         <DownloadIcon className="text-lg" />
                         Download
