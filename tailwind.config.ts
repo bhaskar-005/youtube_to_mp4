@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { colors } from 'tailwindcss/defaultTheme';
 
 export default {
     darkMode: ["class"],
@@ -10,6 +11,7 @@ export default {
   theme: {
   	extend: {
   		colors: {
+			darkgreen: '#012E1F',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
