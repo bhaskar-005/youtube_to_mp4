@@ -18,6 +18,7 @@ import {
   Globe,
   Smartphone,
 } from "lucide-react";
+import InputAndDownload from "@/components/downloadUi";
 
 export default async function HomePage() {
   return (
@@ -29,22 +30,9 @@ export default async function HomePage() {
         <p className="text-xl text-gray-600 mb-8">
           Enter a valid URL or search for videos to start downloading.
         </p>
-        <form className="flex space-x-2 mb-12 bg-green-100 rounded-lg px-5 py-8">
-          <div className="relative flex-grow">
-            <LinkIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Enter video URL"
-              className="pl-14 pr-4 py-6 w-full rounded-lg shadow-lg focus:ring-2 focus:ring-green-300 border-darkgreen focus:border-white"
-            />
-          </div>
-          <Button
-            type="submit"
-            className="bg-green-600 hover:bg-green-700 rounded-lg px-8 py-6 shadow-lg transition-transform hover:scale-105"
-          >
-            Search
-          </Button>
-        </form>
+       <div>
+        <InputAndDownload/>
+       </div>
 
         {/* How to Download Steps */}
         <div className="mt-20">

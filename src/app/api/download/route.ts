@@ -16,10 +16,8 @@ export async function POST(req:NextRequest) {
 
         const videoInfo = await ytdl.getBasicInfo(videoUrl);
         const videoTitle = videoInfo.videoDetails.title;
-        console.log('video found -',videoTitle);
         
         const selectedFormat = videoInfo.formats.find(format => format.itag === itag);
-        console.log('video formate -',selectedFormat);
         const isVideoFormate = videoInfo.formats.filter(f => f.itag === itag);
 
         if(!isVideoFormate){
@@ -29,11 +27,7 @@ export async function POST(req:NextRequest) {
         console.log('starting to write..');
         
         await new Promise((resolve, reject) =>{
-            ytdl(videoUrl, {filter:(formate)=> formate.itag === parseInt(itag) })
-            .on("progress", (chunkLength, downloaded, total) => {
-                const percent = ((downloaded / total) * 100).toFixed(2);
-                console.log(`Progress: ${percent}%`);
-            })
+            ytdl(videoUrl, {filter:(formate)=> formate.itag === parseInt(itag), quality: itag  })
            .pipe(fs.createWriteStream(path.join('download',`${videoTitle}.mp4`)))
            .on('finish',resolve)
            .on('error', reject)
