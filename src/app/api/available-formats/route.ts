@@ -12,11 +12,9 @@ export async function POST(req:NextRequest) {
     }
 
       
-    const videoInfo = await ytdl.getInfo(videoUrl, {
-      requestOptions: {
-        timeout: 5000, // Timeout after 5 seconds
-      }
-    });
+    const videoInfo = await ytdl.getInfo(videoUrl);
+    console.log(videoInfo, "----");
+    
    
     //TODO add JWT token for more safety
     return createResponse.message('video info found.', 200, {
