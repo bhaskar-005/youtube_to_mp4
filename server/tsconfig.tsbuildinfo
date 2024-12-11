@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/downloadcontroller.ts","./src/controllers/formatecontroller.ts","./src/routes/download.ts","./src/routes/formate.ts","./src/utils/createresponse.ts"],"version":"5.7.2"}
